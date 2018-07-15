@@ -1,0 +1,158 @@
+<html>
+    <title>猜拳遊戲</title>
+    <head>
+        <style>
+            img{
+                text-align: center;
+                height: 100px;
+                width: 100px;
+            }
+            div{
+                text-align: center;
+            }
+            button{
+                background-color: transparent;
+                color:deepskyblue;
+            }
+            button:hover{
+                color: lightskyblue;
+                border: none;
+            }
+            body{
+                background-image: url('http://www.freepptbackgrounds.net/wp-content/uploads/2013/01/Light-Blue-Effect-PPT-Backgrounds.jpg');
+                background-size:cover;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div>
+            
+            <button onclick="game('scissors')"><img src=".\imgs\scissors.png"></button>
+            <button onclick="game('stone')"><img src=".\imgs\stone.png"></button>
+            <button onclick="game('papper')"><img src=".\imgs\paper.png"></button>
+            <div>
+                <p id="gamerCount"></p>
+                <p id="ownerCount"></p>
+                <p id="result_"></p>
+            </div>
+            <div id="gamerHit">  </div>
+            <div id="ownerHit">  </div>
+        </div>
+        
+    </body>
+    <script>
+
+
+        let gamerCounter =0;//玩家贏家次數
+        let ownerCounter=0;//電腦贏家次數
+    function game(hit){
+        console.log(hit);
+        
+
+        let rdmNum = Math.random();//由電腦生成隨機出拳
+        let owner_hit ='';
+
+
+         //玩家出拳結果具象化
+         if(hit =='scissors')
+            {
+                document.getElementById('gamerHit').innerHTML='<img src="http://www.aihuahua.net/uploads/allimg/150425/441-1504250940570-L.jpg"> <div> V.S. </div>';
+            
+            }else if(hit =="stone")
+            {
+                document.getElementById('gamerHit').innerHTML='<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS34vlXq4VB4hSUbbEZW81SMFR9fslkxNCMSQBaYaKjs530Op5HeQ"> <div> V.S. </div>';
+            
+            }else{
+                document.getElementById('gamerHit').innerHTML='<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYfV4RN0YT7LUAAFz_Jz5VBqichahHXcP372ogu5YRV8C-QGDn"> <div> V.S. </div>';
+
+            }
+
+        if(rdmNum < 1/3)
+        {
+            console.log('Computer:','scissors');
+            owner_hit='剪刀';
+            
+            //電腦出拳結果具象化
+            document.getElementById('ownerHit').innerHTML='<img src="http://www.aihuahua.net/uploads/allimg/150425/441-1504250940570-L.jpg">';
+            
+            //判斷玩家是否贏家
+            if(hit =='scissors')
+            {
+                document.getElementById('result_').innerHTML ="平手!!"+"</br>";
+            }else if(hit =="stone")
+            {
+                gamerCounter++;
+                document.getElementById('result_').innerHTML ="您贏了!!"+"</br>";
+            }else{
+                ownerCounter++;
+                document.getElementById('result_').innerHTML ="您輸了!!"+"</br>";
+            }
+        }else if(rdmNum < 2/3)
+        {
+            console.log('Computer:','stone');
+            owner_hit='石頭';
+            //出拳結果具象化
+            document.getElementById('ownerHit').innerHTML='<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS34vlXq4VB4hSUbbEZW81SMFR9fslkxNCMSQBaYaKjs530Op5HeQ">';
+
+            //判斷玩家是否贏家
+            if(hit =='scissors')
+            {
+                ownerCounter++;
+                document.getElementById('result_').innerHTML ="您輸了!!"+"</br>";
+            }else if(hit =="stone")
+            {
+                document.getElementById('result_').innerHTML ="平手!!"+"</br>";
+            }else{
+                gamerCounter++;
+                document.getElementById('result_').innerHTML ="您贏了!!"+"</br>";
+            }
+        }else{
+            console.log('Computer','papper');
+            owner_hit='布';
+            //出拳結果具象化
+            document.getElementById('ownerHit').innerHTML='<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYfV4RN0YT7LUAAFz_Jz5VBqichahHXcP372ogu5YRV8C-QGDn">';
+
+            //判斷玩家是否贏家
+            if(hit =='scissors')
+            {
+                gamerCounter++;
+                document.getElementById('result_').innerHTML ="您贏了!!"+"</br>";
+            }else if(hit =="stone")
+            {
+                ownerCounter++;
+                document.getElementById('result_').innerHTML ="您輸了!!"+"</br>";
+            }else{
+                document.getElementById('result_').innerHTML ="平手!!"+"</br>";
+            }
+        }
+        document.getElementById('result_').innerHTML +="電腦出的是"+owner_hit+ ", 你出的是"+hit
+        document.getElementById('gamerCount').innerHTML ="玩家贏家次數: " + gamerCounter;
+        document.getElementById('ownerCount').innerHTML ="電腦贏家次數: " + ownerCounter;
+
+        if(gamerCounter==10)
+        {
+            setTimeout(function(){
+                gamerCounter=0;
+                ownerCounter=0;
+                alert('玩家這局贏了!!');
+            },100)
+           
+            
+        }else if(ownerCounter ==10){
+            setTimeout(function(){
+                gamerCounter=0;
+                ownerCounter=0;
+                alert('電腦這局贏了!!');
+            },100)
+
+        }
+    }
+
+    // function GamerResulrt(gamer,owner)
+    // {
+    //     if(gamer)
+
+    // }
+    </script>
+</html>
